@@ -126,6 +126,20 @@ function App() {
               engineRef.current?.stopFull();
             }}
           />
+
+          <button 
+            onClick={() => {
+              // Send message to parent window to close the iframe
+              if (window.parent !== window) {
+                window.parent.postMessage({ action: 'close_suno_track' }, '*');
+              } else {
+                window.close();
+              }
+            }}
+            className="ml-2 w-6 h-6 flex items-center justify-center rounded bg-dark-800 border border-dark-600 text-dark-300 hover:text-accent-red hover:border-accent-red transition-colors"
+          >
+            ✕
+          </button>
         </header>
 
         {/* Status */}
